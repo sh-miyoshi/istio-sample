@@ -1,0 +1,90 @@
+global:
+  proxy:
+    accessLogFile: "/dev/stdout"
+    resources:
+      requests:
+        cpu: 10m
+        memory: 40Mi
+  disablePolicyChecks: false
+  controlPlaneSecurityEnabled: true
+  mtls:
+    enabled: true
+  configValidation: false
+#  outboundTrafficPolicy:
+#    mode: REGISTRY_ONLY
+
+sidecarInjectorWebhook:
+  enabled: false
+  rewriteAppHTTPProbe: false
+
+pilot:
+  traceSampling: 100.0
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      cpu: 100m
+      memory: 200Mi
+
+mixer:
+  policy:
+    enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        cpu: 100m
+        memory: 100Mi
+
+  telemetry:
+    enabled: true
+    resources:
+      requests:
+        cpu: 50m
+        memory: 100Mi
+      limits:
+        cpu: 100m
+        memory: 100Mi
+ 
+  adapters:
+    stdio:
+      enabled: true
+ 
+grafana:
+  enabled: true
+  service:
+    type: LoadBalancer
+
+tracing:
+  enabled: true
+  service:
+    type: LoadBalancer
+
+kiali:
+  enabled: true
+  createDemoSecret: true
+  service:
+    type: LoadBalancer
+
+gateways:
+  istio-ingressgateway:
+    type: LoadBalancer
+    resources:
+      requests:
+        cpu: 10m
+        memory: 40Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+
+  istio-egressgateway:
+    enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 40Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
