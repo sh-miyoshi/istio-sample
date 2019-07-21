@@ -48,9 +48,9 @@ mixer:
         cpu: 100m
         memory: 100Mi
  
-  adapters:
-    stdio:
-      enabled: true
+  # adapters:
+  #   stdio:
+  #     enabled: true
  
 grafana:
   enabled: true
@@ -80,7 +80,7 @@ gateways:
         memory: 128Mi
 
   istio-egressgateway:
-    enabled: true
+    enabled: false
     resources:
       requests:
         cpu: 10m
